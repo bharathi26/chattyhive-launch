@@ -1,0 +1,71 @@
+#container {
+  width: auto;
+  position: static;
+  display: block;
+  height: 35px;
+  margin-top: 18px;
+  margin-left: 0px;
+  padding-right: 30px;
+  padding-left: 0px;
+  float: none;
+  text-align: left;
+}
+
+.ui-progress span.ui-label {
+  font-family: 'chattyhiveabold';
+  font-weight: 400;
+  font-size: 1.3em;
+  position: absolute;
+  right: 0;
+  line-height: 33px;
+  padding-right: 12px;
+  color: rgba(41,41,41,0.6);
+  text-shadow: rgba(255,255,255, 0.45) 0 1px 0px;
+  white-space: nowrap;
+}
+  
+.ui-progress-bar {
+  position: relative;
+  height: 35px;
+  background-color: #fcfcfc;
+  border-radius: 35px;
+  -moz-border-radius: 35px;
+  -webkit-border-radius: 35px;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #FCFCFC), color-stop(1, #EBEBEB));
+  background: -moz-linear-gradient(#EBEBEB 0%, #fcfcfc 100%);
+  -webkit-box-shadow: inset 0px 1px 2px 0px rgba(0, 0, 0, 0.5), 0px 1px 0px 0px #FFF;
+  -moz-box-shadow: inset 0px 1px 2px 0px rgba(0, 0, 0, 0.5), 0px 1px 0px 0px #FFF;
+  box-shadow: inset 0px 1px 2px 0px rgba(0, 0, 0, 0.5), 0px 1px 0px 0px #FFF;
+}      
+  
+.ui-progress {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  height: 36px;
+  -moz-border-radius: 35px;
+  -webkit-border-radius: 35px;
+  border-radius: 35px;
+  -webkit-background-size: 44px 44px;
+  background-color: #ffb615;
+  background: -webkit-gradient(linear, 0 0, 44 44,
+    color-stop(0.00, rgba(255,255,255,0.17)),
+    color-stop(0.25, rgba(255,255,255,0.17)),
+    color-stop(0.26, rgba(255,255,255,0)),
+    color-stop(0.50, rgba(255,255,255,0)),
+    color-stop(0.51, rgba(255,255,255,0.17)),
+    color-stop(0.75, rgba(255,255,255,0.17)),
+    color-stop(0.76, rgba(255,255,255,0)),
+    color-stop(1.00, rgba(255,255,255,0))
+  ), -webkit-gradient(linear, left bottom, left top, color-stop(0, #ffb615), color-stop(1, #FFBC28));
+  background: -moz-repeating-linear-gradient(top left -30deg,
+    rgba(255,255,255,0.17),
+    rgba(255,255,255,0.17) 15px,
+    rgba(255,255,255,0) 15px,
+    rgba(255,255,255,0) 30px
+  ), -moz-linear-gradient(#FFBC28 0%, #ffb615 100%);
+  -webkit-box-shadow: inset 0px 1px 0px 0px #F3D883, inset 0px -1px 1px #FFC74F;
+  -moz-box-shadow: inset 0px 1px 0px 0px #F3D883, inset 0px -1px 1px #FFC74F;
+  box-shadow: inset 0px 1px 0px 0px #F3D883, inset 0px -1px 1px #FFC74F;
+  border: 1px solid #CF9500;
+}

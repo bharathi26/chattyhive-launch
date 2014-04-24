@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html data-wf-site="52b5be945d1160f9630008c7" lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>chattyhive - &#x00bf;Qui&eacute;nes somos?</title>
+  <meta name="description" content="Chattyhive es un nuevo servicio de chat para Android. Participa en tus temas favoritos y conoce gente uniéndote a nuestros hives.">
+  <meta name="keywords" content="chattyhive servicio chat service android launch lanzamiento about nosotros equipo">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/normalize.css">
+  <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/webflow.css">
+  <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/chattyhive.webflow.css">
+  <link rel="stylesheet" type="text/css" href=".{{STATIC_URL}}css/web-font.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
+
+  <link rel="shortcut icon" href="{{STATIC_URL}}favicon.png">
+  <link rel="apple-touch-icon" href="{{STATIC_URL}}webclip.png">
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-47198746-1', 'chattyhive.com');
+      ga('send', 'pageview');
+
+    </script>
+
+    <script language="javascript">var STATIC_URL = "{{ STATIC_URL|escapejs }}";</script>
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}js/preload.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}js/escribenos.js"></script>
+    <script src="http://code.jquery.com//jquery-2.0.3.min.js" type="text/javascript"></script>
+    <script src="http://cdn.jsdelivr.net/jquery.cookie/1.4.0/jquery.cookie.js" type="text/javascript"></script>
+
+</head>
+<body>
+  <header class="section arriba" id="menu">
+    <div class="w-container">
+      <div class="w-row cabecera">
+        <div class="w-col w-col-6">
+           <a href="/"><img class="logo_cabecera" src="{{STATIC_URL}}images/Logo_final_preparado_para_efectos-04.png" alt="chattyhive logo" style="width:211px;height:50px;"></a>
+        </div>
+        <div class="w-col w-col-6 enlaces_cabecera"><a class="enlace_cabecera" href="http://blog.chattyhive.com">blog</a><a class="enlace_cabecera" href="/#subscribe-section">join</a><a class="enlace_cabecera" href="/#social-section">social</a>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="section hero" id="quienes-somos">
+    <div class="w-container titulo_contacto">
+      <h2 class="contacto_heading">&#x00bf;Qui&eacute;nes somos?</h2>
+    </div>
+    <div class="w-container">
+      <div class="w-row slogan_y_boton">
+        <div class="w-col w-col-6 padding_parrafo">
+		  <p class="parrafo_quienes-somos">Chattyhive es una startup viguesa creada en Septiembre de 2013. Somos un pequeño equipo de cuatro ingenieros de telecomunicaciones y dos alumnos del máster Derecho en Empresa. Trabajamos desde la Universidad de Vigo y con la colaboración de dos profesoras del departamento de Telemática.</p>
+		  <p class="parrafo_quienes-somos">&#x00a1;Visita nuestra página en Linkedin para saber m&aacute;s sobre todos nosotros!</p>
+		  <a class="boton_linkedin form_submit" href="http://www.linkedin.com/company/chattyhive" target="_blank">Chattyhive en LinkedIn</a>
+        </div>
+        <div class="w-col w-col-6 mapa_column">
+          <div class="w-widget w-widget-map mapa" data-widget-latlng="42.169782,-8.688103" data-widget-style="hybrid" data-widget-zoom="16" data-widget-tooltip="Ing. de Telecomunicación, Universidad de Vigo" data-disable-touch="1"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section white" id="escribenos">
+    <div class="w-container header_escribenos">
+      <h2 class="contacto_heading">Escríbenos</h2>
+    </div>
+    <div class="w-container">
+      <div class="w-form">
+{#        <form name="email-form" data-name="Email Form">{% csrf_token %}#}
+        <form name="email-form" data-name="Email Form" action="/about" method="post">{% csrf_token %}
+          <div class="w-container">
+            <div class="w-row">
+              <div class="w-col w-col-5 columna_form_1">
+                <input class="w-input name_field email_input" type="text" placeholder="Tu nombre" id="name" name="name" data-name="Name" required="required"/>
+                <input class="w-input email_field email_input" type="email" placeholder="Tu email" id="email" name="email" data-name="Email" required="required"/>
+                <input class="w-input asunto_field email_input " type="text" placeholder="Asunto" id="asunto" name="asunto" data-name="asunto" required="required"/>
+              </div>
+              <div class="w-col w-col-7 columna_form_2">
+                <textarea class="w-input text_field" placeholder="Escribe aquí tu mensaje..." required="required" id="contenido" name="contenido" data-name="contenido"></textarea>
+                <input class="w-button form_submit email_submit_button boton_submit" type="submit" id="btn_send2" value="Enviar mensaje" data-wait="Un momento..."/>
+              </div>
+            </div>
+          </div>
+        </form>
+        <div class="w-form-done">
+          <p style="font-size:23px;margin-bottom:2px">Gracias! Hemos recibido tu mensaje!</p>
+        </div>
+        <div class="w-form-fail">
+          <p style="font-size:23px;margin-bottom:2px">Uuups! Algo ha ido mal :S Env&iacute;anos el email otra vez!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="section social" id="social_networks">
+    <div class="w-container otro_contacto">
+      <h3 class="cabecera_buscanos">O cont&aacute;ctanos a trav&eacute;s de...</h3>
+	  <a class="w-inline-block social_button facebook" href="http://www.facebook.com/chattyhive" target="_blank">
+        <img class="social_image_peque" src="{{STATIC_URL}}images/redes%20sociales-01.png" width="266" alt="chattyhive facebook">
+      </a>
+      <a class="w-inline-block social_button google_plus" href="https://plus.google.com/+Chattyhive" target="_blank">
+        <img class="social_image_peque" src="{{STATIC_URL}}images/redes%20sociales-02.png" alt="chattyhive google plus">
+      </a>
+      <a class="w-inline-block social_button twitter" href="https://twitter.com/chattyhive" target="_blank">
+        <img class="social_image_peque" src="{{STATIC_URL}}images/redes%20sociales-04.png" alt="chattyhive twitter">
+      </a>
+    </div>
+  </div>
+  
+  <div class="section grey footer">
+    <div class="w-container">
+      <a class="footer-link" href="/">chattyhive &nbsp;&nbsp;&#x2022;</a><a class="footer-link" href="#quienes-somos">¿Qui&eacute;nes somos?</a><a class="footer-link" href="#escribenos">&#x2022;&nbsp;&nbsp; Escr&iacute;benos</a><a class="footer-link" href="faq">&#x2022; &nbsp;&nbsp;FAQ</a>
+    </div>
+    <a class="w-inline-block logo_foot" href="/"></a>
+  </div>
+
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script type="text/javascript" src="{{STATIC_URL}}js/webflow.js"></script>
+</body>
+{#<script type="text/javascript">#}
+{#    // Buttons behaviour#}
+{#    $(document).ready(function() {#}
+{#        // Button send behaviour when clicked#}
+{#        $('#btn_send2').on('click', function()#}
+{#        {#}
+{#            var name = $("#name").val();#}
+{#            var email = $("#email").val();#}
+{#            var asunto = $("#asunto").val();#}
+{#            var contenido = $("#contenido").val();#}
+{#            var d = new Date();#}
+{#            var timestamp = d.toTimeString();#}
+{#            var csrftoken = $.cookie('csrftoken');#}
+{#            alert("Gracias! Hemos recibido tu email!");#}
+{#            $.ajax({#}
+{#                type: "POST",#}
+{#                url: "/about",#}
+{#                headers: {"X-CSRFToken":csrftoken},#}
+{#                data: {timestamp:timestamp, name:name,#}
+{#                    email:email, asunto:asunto, contenido:contenido},#}
+{#                success: function(){#}
+{#                        alert("Gracias! Hemos recibido tu email!")#}
+{#                    },#}
+{#                failure: function(errMsg) {#}
+{#                        alert("Uuups! Algo ha ido mal :S Env&iacute;anos el email otra vez!")#}
+{#                    }#}
+{#            });#}
+{#            return false;#}
+{#        });#}
+{#    });#}
+{#</script>#}
+</html>
