@@ -8,7 +8,6 @@ class InterestedUserResource(resources.ModelResource):
 
     class Meta:
         model = InterestedUser
-        exclude = ('name', 'subject', 'content', 'via', )
 
 
 class InterestedUserAdmin(ImportExportModelAdmin, admin.ModelAdmin):
