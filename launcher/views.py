@@ -20,8 +20,8 @@ def home(request):
         # timestamp = request.POST.get("timestamp")
         # El from@example.com se sustituira por el email que el usuario introduce en el formulario!
         #  y tb se mete despues de "su email es:"
-        send_mail('Nueva suscrpcion a chattyhive launch!',
-                  'Un nuevo usuario se ha suscrito al lanzamiento, su email es: ' + email,
+        send_mail('Nueva suscrpcion a chattyhive beta testing!',
+                  'Un nuevo usuario quiere ser beta tester, su email es: ' + email,
                   email, ['chattyhive@gmail.com'], fail_silently=False)
     return render(request, "index.html")
 

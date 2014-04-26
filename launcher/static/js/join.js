@@ -24,7 +24,7 @@
                 headers: {"X-CSRFToken":csrftoken},
                 data: {timestamp:timestamp, email:email},
                 success: function(){
-                        alert("Gracias! Hemos recibido tu email!")
+                        alert("Gracias! Hemos recibido tu email! Pronto te enviaremos instrucciones para descargar la app y ser beta tester.")
                     },
                 failure: function(errMsg) {
                         alert("Uuups! Algo ha ido mal :S Env&iacute;anos el email otra vez!")
