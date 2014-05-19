@@ -16,6 +16,15 @@ urlpatterns = patterns('',
     url(r'^sitemap\.xml$', TemplateView.as_view(template_name='sitemap.xml', content_type='text/plain')),
     # url(r'^launcher_ch/', include('launcher_ch.foo.urls')),
 
+    # urls for django-newsletter
+    (r'^newsletter/', include('newsletter.urls')),
+
+    # urls for tinymce
+    (r'^tinymce/', include('tinymce.urls')),
+
+    # urls for imperavi
+    url(r'^imperavi/', include('imperavi.urls')),
+
     # Uncomment the admin/doc line below to enable admin documentation:
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 

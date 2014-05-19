@@ -117,7 +117,12 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'launcher',
-    'import_export'
+    'import_export',
+    'tinymce',
+    'imperavi',
+    'django_extensions',
+    'sorl.thumbnail',
+    'newsletter',
 )
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
@@ -183,3 +188,7 @@ EMAIL_HOST_PASSWORD = 'g7u229xd'
 
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+
+# Config for django-newsletter
+NEWSLETTER_CONFIRM_EMAIL = False
+NEWSLETTER_RICHTEXT_WIDGET = "imperavi.widget.ImperaviWidget"
