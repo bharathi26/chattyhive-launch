@@ -43,8 +43,8 @@ $(function() {
   $('#progress_bar .ui-progress .ui-label').hide();
   $('#progress_bar .ui-progress').css('width', '7%');
   
-  $('#progress_bar .ui-progress').animateProgress(70, function() {
-    $(this).animateProgress(70, function() {
+  $('#progress_bar .ui-progress').animateProgress(80, function() {
+    $(this).animateProgress(80, function() {
       
     });
   });
