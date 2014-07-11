@@ -36,9 +36,9 @@
 
 // Validates the email
 function validarEmail( email ) {
-    var expr = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    var expr = /^([a-zA-Z0-9_\.\-])+\@(gmail.com)+$/;
     if ( !expr.test(email) ) {
-        alert("La dirección de correo " + email + " es incorrecta. Por favor introduce un email válido.");
+        alert("La dirección de correo " + email + " es incorrecta o no es de gmail. Por favor introduce el email que usas en tu dispositivo Android.");
         return false;
     } else {
         return true;
