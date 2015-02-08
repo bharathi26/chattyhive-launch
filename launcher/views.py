@@ -6,6 +6,8 @@ from launcher.models import InterestedUser
 
 
 def home(request):
+    context_dict = {'need_captcha': False}
+
     if request.method == 'POST':
         # Getting info from the POST
         email = request.POST.get("email")
@@ -17,13 +19,21 @@ def home(request):
         user.set_via('Join')
         user.save()
 
+        if request.session['attempt_join'] >= 1:
+            request.session['attempt_join'] += 1
+        elif request.session['attempt_join'] == 3:
+            request.session['attempt_join'] = 0
+            context_dict['need_captcha'] = True
+        else:
+            request.session['attempt_join'] = 1
+
         # timestamp = request.POST.get("timestamp")
         # El from@example.com se sustituira por el email que el usuario introduce en el formulario!
         #  y tb se mete despues de "su email es:"
-        send_mail('Nueva suscrpcion a chattyhive beta testing!',
-                  'Un nuevo usuario quiere ser beta tester, su email es: ' + email,
+        send_mail('Nueva suscrpcion a chattyhive launch!',
+                  'Un nuevo usuario se ha suscrito al lanzamiento, su email es: ' + email,
                   email, ['chattyhive@gmail.com'], fail_silently=False)
-    return render(request, "index.html")
+    return render(request, "index.html", context_dict)
 
 
 def about(request):

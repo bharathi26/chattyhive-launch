@@ -4,6 +4,8 @@ import os
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
+TEST_RUNNER = 'django.test.runner.DiscoverRunner'
+
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )
@@ -13,7 +15,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'chattylaunch',       # Or path to database file if using sqlite3.
+        'NAME': 'chattybetalaunch',       # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
         'USER': 'chlaunchuser',
         'PASSWORD': 'ch19ke9s7udcmrpalw34cx1',
@@ -155,7 +157,7 @@ LOGGING = {
 
 # Parse database configuration from $DATABASE_URL
 import dj_database_url
-DATABASES = {'default': dj_database_url.config(default='postgres://chlaunchuser:ch19ke9s7udcmrpalw34cx1@localhost/chattylaunch')}
+DATABASES = {'default': dj_database_url.config(default='postgres://chlaunchuser:ch19ke9s7udcmrpalw34cx1@localhost/chattybetalaunch')}
 # DATABASES['default'] =  dj_database_url.config()
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
