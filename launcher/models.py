@@ -9,6 +9,7 @@ class InterestedUser(models.Model):
     subject = models.CharField(max_length=128, null=True)
     content = models.TextField()
     via = models.CharField(max_length=24)
+    timestamp = models.DateTimeField(null=True, auto_now_add=True)
 
     def set_name(self, name):
         self.name = name

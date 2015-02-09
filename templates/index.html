@@ -27,7 +27,7 @@
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <script type="text/javascript" src="{{STATIC_URL}}js/webflow.js"></script>
   <script type="text/javascript" src="{{STATIC_URL}}js/preload.js"></script>
-  <script type="text/javascript" src="{{STATIC_URL}}js/join.js"></script>
+{#  <script type="text/javascript" src="{{STATIC_URL}}js/join.js"></script>#}
   <script src="http://code.jquery.com//jquery-2.0.3.min.js" type="text/javascript"></script>
   <script src="http://cdn.jsdelivr.net/jquery.cookie/1.4.0/jquery.cookie.js" type="text/javascript"></script>
 
@@ -97,8 +97,16 @@
           <h2 class="head_subscribe">Prueba chattyhive beta</h2>
           <p class="parrafo_join">&iexcl;Gracias por ser beta tester! Te avisaremos muy pronto para que pruebes la beta privada!
           <div class="w-form formulario" id="formulario">
-            <form class="w-clearfix formulario_subscribe" name="email-form" data-name="Email Form">{% csrf_token %}
-              <input class="w-input email_input" type="email" placeholder="Tu email de Google" id="email" name="email" data-name="Email" required="required"/>
+            <form class="w-clearfix formulario_subscribe" name="email-form" id="join_form" method="post" data-name="Email Form" action="/">
+              {% csrf_token %}
+              {% for hidden in form.hidden_fields %}
+                {{  hidden }}
+              {% endfor %}
+              {% for field in form.visible_fields %}
+                {{ field.errors }}
+                {{ field.help_text }}
+                {{ field }}
+              {% endfor %}
               <input class="w-button email_submit_button" type="submit" id="btn_send" value="Join" data-wait="Un momento!..."/>
             </form>
             <div class="w-form-done">
