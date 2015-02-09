@@ -3,6 +3,7 @@ from django.core.mail import send_mail
 # Create your views here.
 from django.shortcuts import render
 from launcher.models import InterestedUser
+from .forms import JoinForm
 
 
 def home(request):
@@ -10,29 +11,30 @@ def home(request):
 
     if request.method == 'POST':
         # Getting info from the POST
-        email = request.POST.get("email")
+        form = JoinForm(request.POST)
+        if form.is_valid():
+            # We save what we receive in the form and that is already associated with InterestedUser model
+            print(form.cleaned_data['email'])
+            form.save(commit=True)
 
-        # Creating and saving info in database
-        user = InterestedUser()
-        user.save()
-        user.set_email(email)
-        user.set_via('Join')
-        user.save()
+            send_mail('Nueva suscrpcion a chattyhive launch!',
+                  'Un nuevo usuario se ha suscrito al lanzamiento, su email es: ' + form.cleaned_data['email'],
+                  form.cleaned_data['email'], ['chattyhive@gmail.com'], fail_silently=False)
 
-        if request.session['attempt_join'] >= 1:
-            request.session['attempt_join'] += 1
-        elif request.session['attempt_join'] == 3:
-            request.session['attempt_join'] = 0
-            context_dict['need_captcha'] = True
+            # We only want to show captcha if it is the third time an email is registered
+            if 'attempt_join' in request.session.keys():
+                if request.session['attempt_join'] == 3:
+                    request.session['attempt_join'] = 0
+                    context_dict['need_captcha'] = True
+                else:
+                    request.session['attempt_join'] += 1
+            else:
+                request.session['attempt_join'] = 1
         else:
-            request.session['attempt_join'] = 1
+            print(form.errors)
 
-        # timestamp = request.POST.get("timestamp")
-        # El from@example.com se sustituira por el email que el usuario introduce en el formulario!
-        #  y tb se mete despues de "su email es:"
-        send_mail('Nueva suscrpcion a chattyhive launch!',
-                  'Un nuevo usuario se ha suscrito al lanzamiento, su email es: ' + email,
-                  email, ['chattyhive@gmail.com'], fail_silently=False)
+    form = JoinForm() #se vuelve a coger el formulario vacío para presentarlo tanto en un get como en un post.
+    context_dict['form'] = form
     return render(request, "index.html", context_dict)
 
 
