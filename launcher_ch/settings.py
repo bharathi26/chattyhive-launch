@@ -107,6 +107,18 @@ WSGI_APPLICATION = 'launcher_ch.wsgi.application'
 import os
 TEMPLATE_DIRS = (os.path.join(os.path.dirname(__file__), '..', 'templates').replace('\\', '/'),)
 
+TEMPLATE_CONTEXT_PROCESSORS = (
+    "django.contrib.auth.context_processors.auth",
+    "django.core.context_processors.debug",
+    "django.core.context_processors.i18n",
+    "django.core.context_processors.media",
+    "django.core.context_processors.static",
+    "django.core.context_processors.tz",
+    "django.contrib.messages.context_processors.messages"
+)
+
+MESSAGE_STORAGE = 'django.contrib.messages.storage.fallback.FallbackStorage'
+
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -180,9 +192,9 @@ STATICFILES_DIRS = (
 # Sending mails through SendGrid
 
 EMAIL_HOST = 'smtp.sendgrid.net'
-EMAIL_HOST_USER = 'app21193692@heroku.com'
+EMAIL_HOST_USER = 'app24497640@heroku.com'
 
-EMAIL_HOST_PASSWORD = 'g7u229xd'
+EMAIL_HOST_PASSWORD = 'istmg1bd'
 
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
