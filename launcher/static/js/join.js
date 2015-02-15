@@ -6,29 +6,37 @@
  * To change this template use File | Settings | File Templates.
  */
 
+// If we click in any other part of the document and the Balloon was shown it will be hidden
+var shown = false;
+var contenido_bocadillo = "empty"
 
+$(document).click(function(event) {
+    if(!$(event.target).closest('#id_email').length) {
+        if($('.balloon').is(":visible")) {
+            $('.balloon').hide()
+            shown = false;
+        }
+    }
+})
 
 // Buttons behaviour
 $(document).ready(function() {
     // Button send behaviour when clicked
 
     $(function() {
-        var shown = false;
-        $('#email_input').on("click", function() {
-            shown ? $(this).hideBalloon() : $(this).showBalloon();
-            shown = !shown;
-        }).showBalloon({
-            position: "bottom right"
-        });
+        $('#id_email').on("click", function() {
+            contenido_bocadillo = "Introduce la cuenta de Google asociada a tu dispositivo Android"
+            mostrarBocadillo()
+        })
     });
 
     $('#btn_send').on('click', function()
     {
-        var email = $("#email").val();
+        var email = $("#id_email").val();
         if(!validarEmail(email)) {
             return false;
         }
-        $("#email").val("");
+        $("#id_email").val("");
         var d = new Date();
         var timestamp = d.toTimeString();
         var csrftoken = $.cookie('csrftoken');
@@ -48,11 +56,37 @@ $(document).ready(function() {
     });
 });
 
+
+function mostrarBocadillo() {
+    shown ?
+        $('#id_email').hideBalloon() :
+        $('#id_email').showBalloon({
+            classname: "balloon",
+            contents: contenido_bocadillo,
+            position: "top",
+            offsetX: 50,
+            offsetY: 5,
+            tipSize: 20,
+            showDuration: 100,
+            css: {
+                maxWidth: "17em",
+                border: "solid 1px orange",
+                color: "#463974",
+                fontWeight: "bold",
+                fontSize: "130%",
+                backgroundColor: "#efefef"
+            }
+        });
+    shown = !shown;
+}
+
 // Validates the email
 function validarEmail( email ) {
-    var expr = /^([a-zA-Z0-9_\.\-])+\@(gmail.com)+$/;
+    var expr = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
     if ( !expr.test(email) ) {
-        alert("La dirección de correo " + email + " es incorrecta o no es de gmail. Por favor introduce el email que usas en tu dispositivo Android.");
+        contenido_bocadillo = "La dirección de correo " + email + " es incorrecta o no es de gmail. Por favor introduce el email que usas en tu dispositivo Android."
+        shown = false
+        mostrarBocadillo()
         return false;
     } else {
         return true;

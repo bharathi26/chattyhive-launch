@@ -15,7 +15,7 @@ def home(request):
 
         if form.is_valid():
             # We save what we receive in the form and that is already associated with InterestedUser model
-            print(form.cleaned_data['email'])
+            print("formulario válido!", form.cleaned_data['email'])
             form.save(commit=True)
 
             send_mail('Nueva suscrpcion a chattyhive launch!',
@@ -34,8 +34,10 @@ def home(request):
         else:
             # se procesan los errores
             errors = form.errors.as_data()
+            i = 0
             for error in errors:
-                print(error)
+                print("error{0}: {1}".format(i, error))
+                i += 1
 
     form = JoinForm()  # se vuelve a coger el formulario vacío para presentarlo tanto en un get como en un post.
     context_dict['form'] = form

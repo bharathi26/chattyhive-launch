@@ -24,13 +24,17 @@ class JoinForm(forms.ModelForm):
     def clean_email(self):
         email = self.cleaned_data.get('email')
         try:
-            validators.validate_email(self.email)
+            validators.validate_email(email)
         except forms.ValidationError:
             raise forms.ValidationError("Por faver introduce una dirección de email válida", code="email_malformed")
         try:
             InterestedUser.objects.get(email=email)
         # Si el email no existiese entonces salimos del clean_email y devolvemos el valor (aunque no se haya modificado)
-        except not InterestedUser.DoesNotExist:
+        except InterestedUser.DoesNotExist:
+            # no tenemos que hacer nada, es lo esperado
+            print("el email es válido y se va a añadir el usuario a la BBDD!")
+            pass
+        else:
             # Si el email ya existía sacamos un error de Validación:
             raise forms.ValidationError("Ya estabas anotado como Beta Tester, introduce un email diferente!",
                                         code="user_exists")
