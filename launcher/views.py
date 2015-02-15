@@ -7,19 +7,20 @@ from .forms import JoinForm
 
 
 def home(request):
-    context_dict = {'need_captcha': False}
+    context_dict = {'need_captcha': False, 'alert': 'no'}
 
     if request.method == 'POST':
         # Getting info from the POST
         form = JoinForm(request.POST)
+
         if form.is_valid():
             # We save what we receive in the form and that is already associated with InterestedUser model
             print(form.cleaned_data['email'])
             form.save(commit=True)
 
             send_mail('Nueva suscrpcion a chattyhive launch!',
-                  'Un nuevo usuario se ha suscrito al lanzamiento, su email es: ' + form.cleaned_data['email'],
-                  form.cleaned_data['email'], ['chattyhive@gmail.com'], fail_silently=False)
+                      'Un nuevo usuario se ha suscrito al lanzamiento, su email es: ' + form.cleaned_data['email'],
+                      form.cleaned_data['email'], ['chattyhive@gmail.com'], fail_silently=False)
 
             # We only want to show captcha if it is the third time an email is registered
             if 'attempt_join' in request.session.keys():
@@ -31,9 +32,12 @@ def home(request):
             else:
                 request.session['attempt_join'] = 1
         else:
-            print(form.errors)
+            # se procesan los errores
+            errors = form.errors.as_data()
+            for error in errors:
+                print(error)
 
-    form = JoinForm() #se vuelve a coger el formulario vacío para presentarlo tanto en un get como en un post.
+    form = JoinForm()  # se vuelve a coger el formulario vacío para presentarlo tanto en un get como en un post.
     context_dict['form'] = form
     return render(request, "index.html", context_dict)
 
@@ -57,18 +61,16 @@ def about(request):
         user.save()
 
         # timestamp = request.POST.get("timestamp")
-        #Aqui se mete toda la informacion del formulario en la "seccion escribenos"
-        #al asunto le agregamos al final el nombre que dejo en el formulario"
+        # Aqui se mete toda la informacion del formulario en la "seccion escribenos"
+        # al asunto le agregamos al final el nombre que dejo en el formulario"
         send_mail(asunto + ' de ' + name, contenido, email, ['chattyhive@gmail.com'],
                   fail_silently=False)
     return render(request, "about.html")
 
 
 def faq(request):
-
     return render(request, "faq.html")
 
 
 def faq_english(request):
-
     return render(request, "faq_english.html")
