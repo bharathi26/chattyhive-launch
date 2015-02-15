@@ -7,7 +7,7 @@ from .forms import JoinForm
 
 
 def home(request):
-    context_dict = {'need_captcha': False, 'alert': 'no'}
+    context_dict = {'alert': 'no'}
 
     if request.method == 'POST':
         # Getting info from the POST
@@ -26,7 +26,6 @@ def home(request):
             if 'attempt_join' in request.session.keys():
                 if request.session['attempt_join'] == 3:
                     request.session['attempt_join'] = 0
-                    context_dict['need_captcha'] = True
                 else:
                     request.session['attempt_join'] += 1
             else:
@@ -38,6 +37,7 @@ def home(request):
             for error in errors:
                 print("error{0}: {1}".format(i, error))
                 i += 1
+    else
 
     form = JoinForm()  # se vuelve a coger el formulario vacío para presentarlo tanto en un get como en un post.
     context_dict['form'] = form

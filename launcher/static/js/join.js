@@ -64,17 +64,18 @@ function mostrarBocadillo() {
             classname: "balloon",
             contents: contenido_bocadillo,
             position: "top",
-            offsetX: 50,
+            offsetX: 0,
             offsetY: 5,
             tipSize: 20,
             showDuration: 100,
             css: {
                 maxWidth: "17em",
                 border: "solid 1px orange",
-                color: "#463974",
+                color: "#222",
                 fontWeight: "bold",
                 fontSize: "130%",
-                backgroundColor: "#efefef"
+                backgroundColor: "#fff",
+                padding: "10px"
             }
         });
     shown = !shown;
@@ -84,7 +85,7 @@ function mostrarBocadillo() {
 function validarEmail( email ) {
     var expr = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
     if ( !expr.test(email) ) {
-        contenido_bocadillo = "La dirección de correo " + email + " es incorrecta o no es de gmail. Por favor introduce el email que usas en tu dispositivo Android."
+        contenido_bocadillo = "La dirección de correo no tiene un formato válido. Por favor introduce el email que usas en tu dispositivo Android."
         shown = false
         mostrarBocadillo()
         return false;

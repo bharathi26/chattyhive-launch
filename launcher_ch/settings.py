@@ -133,6 +133,7 @@ INSTALLED_APPS = (
     'launcher',
     'import_export',
     'django_extensions',
+    'nocaptcha_recaptcha',
 )
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
@@ -198,3 +199,12 @@ EMAIL_HOST_PASSWORD = 'istmg1bd'
 
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+
+
+#nocaptcha recaptcha settings
+
+NORECAPTCHA_SITE_KEY = '6LfXrgETAAAAAIKxZJdV69Eb1mm3jZR0g6-qRVQj'
+NORECAPTCHA_SECRET_KEY = '6LfXrgETAAAAAPOedgMuWhufN_mDyDLnx25WGZAU'
+
+NORECAPTCHA_VERIFY_URL = 'https://www.google.com/recaptcha/api/siteverify'
+NORECAPTCHA_WIDGET_TEMPLATE = 'recaptcha.html'

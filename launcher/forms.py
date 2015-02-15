@@ -3,15 +3,18 @@ __author__ = 'diego'
 from django import forms
 from launcher.models import InterestedUser
 from django.core import validators
+from nocaptcha_recaptcha.fields import NoReCaptchaField
 
 
 class JoinForm(forms.ModelForm):
     # this is the only field that is actually filled by the user
+    captcha = NoReCaptchaField(gtag_attrs={'data-theme': 'light'})
     email = forms.EmailField(max_length=128, help_text="Introduce la cuenta de gmail que tienes asociada a tu"
                                                        " dispositivo Android",
                              widget=forms.EmailInput(attrs={'class': "w-input email_input",
                                                             'placeholder': 'Tu cuenta de Google'}),
                              required=True)
+
     print("atributos {0}".format(email.widget.attrs['class']))
 
     # this other fields will have the same value and go hidden in the form
