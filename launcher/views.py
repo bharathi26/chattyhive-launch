@@ -8,10 +8,11 @@ from .forms import JoinForm
 
 def home(request):
     context_dict = {'alert': 'no'}
+    needs_captcha = False
 
     if request.method == 'POST':
         # Getting info from the POST
-        form = JoinForm(request.POST)
+        form = JoinForm(needs_captcha, request.POST)
 
         if form.is_valid():
             # We save what we receive in the form and that is already associated with InterestedUser model
@@ -26,6 +27,7 @@ def home(request):
             if 'attempt_join' in request.session.keys():
                 if request.session['attempt_join'] == 3:
                     request.session['attempt_join'] = 0
+                    needs_captcha = True
                 else:
                     request.session['attempt_join'] += 1
             else:
@@ -35,11 +37,11 @@ def home(request):
             errors = form.errors.as_data()
             i = 0
             for error in errors:
-                print("error{0}: {1}".format(i, error))
+                print("error{0}: {1}: {2}".format(i, error, error[i]))
                 i += 1
-    else
 
-    form = JoinForm()  # se vuelve a coger el formulario vacío para presentarlo tanto en un get como en un post.
+    # se vuelve a coger el formulario vacío para presentarlo tanto en un get como en un post.
+    form = JoinForm(needs_captcha)
     context_dict['form'] = form
     return render(request, "index.html", context_dict)
 

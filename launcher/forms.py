@@ -7,8 +7,16 @@ from nocaptcha_recaptcha.fields import NoReCaptchaField
 
 
 class JoinForm(forms.ModelForm):
+
+    def __init__(self, needs_captcha, *args, **kwargs):
+        super(JoinForm, self).__init__(*args, **kwargs)
+        if needs_captcha:
+            self.captcha = NoReCaptchaField(gtag_attrs={'data-theme': 'light'})
+            print("captcha will be included")
+        else:
+            print("captcha won't be included")
+
     # this is the only field that is actually filled by the user
-    captcha = NoReCaptchaField(gtag_attrs={'data-theme': 'light'})
     email = forms.EmailField(max_length=128, help_text="Introduce la cuenta de gmail que tienes asociada a tu"
                                                        " dispositivo Android",
                              widget=forms.EmailInput(attrs={'class': "w-input email_input",
@@ -18,10 +26,10 @@ class JoinForm(forms.ModelForm):
     print("atributos {0}".format(email.widget.attrs['class']))
 
     # this other fields will have the same value and go hidden in the form
-    name = forms.CharField(widget=forms.HiddenInput(), initial="(not specified)")
-    subject = forms.CharField(widget=forms.HiddenInput(), initial="(no subject)")
-    via = forms.CharField(widget=forms.HiddenInput(), initial="Join")
-    content = forms.CharField(widget=forms.HiddenInput(), initial="no content")
+    name = forms.CharField(required=False, widget=forms.HiddenInput(), initial="(not specified)")
+    subject = forms.CharField(required=False, widget=forms.HiddenInput(), initial="(no subject)")
+    via = forms.CharField(required=False, widget=forms.HiddenInput(), initial="Join")
+    content = forms.CharField(required=False, widget=forms.HiddenInput(), initial="no content")
 
     # Lanzo errores si no valida bien el email y también si la dirección ya existe en la BBDD.
     def clean_email(self):
@@ -29,6 +37,7 @@ class JoinForm(forms.ModelForm):
         try:
             validators.validate_email(email)
         except forms.ValidationError:
+            print("el email introducido no es válido")
             raise forms.ValidationError("Por faver introduce una dirección de email válida", code="email_malformed")
         try:
             InterestedUser.objects.get(email=email)
@@ -39,6 +48,7 @@ class JoinForm(forms.ModelForm):
             pass
         else:
             # Si el email ya existía sacamos un error de Validación:
+            print("el email ya existía por lo que se genera un error")
             raise forms.ValidationError("Ya estabas anotado como Beta Tester, introduce un email diferente!",
                                         code="user_exists")
         # Siempre hay que devolver el campo que se está limpiando, por si se ha modificado en la función
