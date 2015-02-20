@@ -134,6 +134,7 @@ INSTALLED_APPS = (
     'import_export',
     'django_extensions',
     'nocaptcha_recaptcha',
+    'debug_toolbar',
 )
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'

@@ -1,8 +1,6 @@
 /**
  * Created with PyCharm.
- * User: xurxo
- * Date: 15/02/14
- * Time: 19:34
+ * User: Diego
  * To change this template use File | Settings | File Templates.
  */
 
@@ -22,10 +20,9 @@ $(document).click(function(event) {
 // Buttons behaviour
 $(document).ready(function() {
     // Button send behaviour when clicked
-
     $(function() {
         $('#id_email').on("click", function() {
-            contenido_bocadillo = "Introduce la cuenta de Google asociada a tu dispositivo Android"
+            contenido_bocadillo = "Introduce la cuenta de Google asociada a tu dispositivo Android."
             mostrarBocadillo()
         })
     });
@@ -36,23 +33,7 @@ $(document).ready(function() {
         if(!validarEmail(email)) {
             return false;
         }
-        $("#id_email").val("");
-        var d = new Date();
-        var timestamp = d.toTimeString();
-        var csrftoken = $.cookie('csrftoken');
-        $.ajax({
-            type: "POST",
-            url: "/",
-            headers: {"X-CSRFToken":csrftoken},
-            data: {timestamp:timestamp, email:email},
-            success: function(){
-                alert("Gracias! Hemos recibido tu email! Pronto te enviaremos instrucciones para descargar la app y ser beta tester.")
-            },
-            failure: function(errMsg) {
-                alert("Uuups! Algo ha ido mal :S Env&iacute;anos el email otra vez!")
-            }
-        });
-        return false;
+        return true
     });
 });
 

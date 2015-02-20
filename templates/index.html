@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html data-wf-site="52b5be945d1160f9630008c7"" xmlns="http://www.w3.org/1999/xhtml"  xmlns:fb="http://ogp.me/ns/fb#" lang="es">
+<html data-wf-site="52b5be945d1160f9630008c7" xmlns="http://www.w3.org/1999/xhtml"  xmlns:fb="http://ogp.me/ns/fb#" lang="es">
 <head>
     <title>chattyhive, a new social chat service for Android, soon in Google Play</title>
 
@@ -108,13 +108,6 @@
                             {{ field }}
                         {% endfor %}
                         <input class="w-button email_submit_button" type="submit" id="btn_send" value="Join" data-wait="Un momento!..."/>
-                        {% if messages %}
-                            <ul class="messages">
-                                {% for message in messages %}
-                                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                                {% endfor %}
-                            </ul>
-                        {% endif %}
                     </form>
                 </div>
             </div>
@@ -190,6 +183,14 @@
     <a class="w-inline-block logo_foot" href="#slogan-section"></a>
 </div>
 
+
+{% if alert == 'successful' %}
+    <script> alert("Gracias! pronto recibirás un email con instrucciones para ser Beta Tester de chattyhive :)") </script>
+{% endif %}
+
+{% if alert == 'needs_captcha' %}
+    <script> alert("Por favor muéstranos que no eres un robot") </script>
+{% endif %}
 
 <script type="text/javascript" src="{{STATIC_URL}}js/progress.js"></script>
 </body>
