@@ -6,7 +6,7 @@
 
 // If we click in any other part of the document and the Balloon was shown it will be hidden
 var shown = false;
-var contenido_bocadillo = "empty"
+var contenido_bocadillo2 = "empty"
 
 $(document).click(function(event) {
     if(!$(event.target).closest('#id_email').length) {
@@ -22,7 +22,7 @@ $(document).ready(function() {
     // Button send behaviour when clicked
     $(function() {
         $('#id_email').on("click", function() {
-            contenido_bocadillo = "Introduce la cuenta de Google asociada a tu dispositivo Android"
+            contenido_bocadillo2 = "Introduce la cuenta de Google asociada a tu dispositivo Android"
             mostrarBocadillo()
         })
     });
@@ -52,10 +52,10 @@ $(document).ready(function() {
 
 function mostrarBocadillo() {
     shown ?
-        $('#btn_send2').hideBalloon() :
-        $('#btn_send2').showBalloon({
+        $('#id_email').hideBalloon() :
+        $('#id_email').showBalloon({
             classname: "balloon",
-            contents: contenido_bocadillo,
+            contents: contenido_bocadillo2,
             position: "top",
             offsetX: 0,
             offsetY: 5,
@@ -78,7 +78,7 @@ function mostrarBocadillo() {
 function validarEmail( email ) {
     var expr = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
     if ( !expr.test(email) ) {
-        contenido_bocadillo = "La dirección de correo no tiene un formato válido. Por favor introduce el email que usas en tu dispositivo Android."
+        contenido_bocadillo2 = "La dirección de correo no tiene un formato válido. Por favor introduce el email que usas en tu dispositivo Android."
         shown = false
         mostrarBocadillo()
         return false;
@@ -89,7 +89,7 @@ function validarEmail( email ) {
 
 function validarNombre( nombre ) {
     if ( nombre.length > 128 ) {
-        contenido_bocadillo = "El campo Nombre no debe ocupar más de 128 letras"
+        contenido_bocadillo2 = "El campo Nombre no debe ocupar más de 128 letras"
         shown = false
         mostrarBocadillo()
         return false;
@@ -100,7 +100,7 @@ function validarNombre( nombre ) {
 
 function validarAsunto( asunto ) {
     if ( asunto.length > 256 ) {
-        contenido_bocadillo = "El campo Asunto no debe ocupar más de 256 letras"
+        contenido_bocadillo2 = "El campo Asunto no debe ocupar más de 256 letras"
         shown = false
         mostrarBocadillo()
         return false;
@@ -111,7 +111,7 @@ function validarAsunto( asunto ) {
 
 function validarContenido( contenido ) {
     if ( contenido.length > 1000 ) {
-        contenido_bocadillo = "El campo Contenido no debe ocupar más de 1000 letras"
+        contenido_bocadillo2 = "El campo Contenido no debe ocupar más de 1000 letras"
         shown = false
         mostrarBocadillo()
         return false;
