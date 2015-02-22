@@ -4,10 +4,10 @@ from django.db import models
 
 
 class InterestedUser(models.Model):
-    name = models.CharField(max_length=64, null=True)
-    email = models.EmailField()
-    subject = models.CharField(max_length=128, null=True)
-    content = models.TextField()
+    name = models.CharField(max_length=128, null=True)
+    email = models.EmailField(max_length=128)
+    subject = models.CharField(max_length=256, null=True)
+    content = models.TextField(max_length=1000)
     via = models.CharField(max_length=24)
     timestamp = models.DateTimeField(null=True, auto_now_add=True)
 

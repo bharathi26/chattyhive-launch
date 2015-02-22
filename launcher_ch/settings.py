@@ -193,6 +193,8 @@ STATICFILES_DIRS = (
 
 # Sending mails through SendGrid
 
+ACTIVAR_EMAILS_EN_JOIN = os.environ.get('ACTIVAR_EMAILS_EN_JOIN', True)
+
 EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_HOST_USER = 'app24497640@heroku.com'
 

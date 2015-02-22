@@ -20,12 +20,6 @@ $(document).click(function(event) {
 // Buttons behaviour
 $(document).ready(function() {
     // Button send behaviour when clicked
-    $(function() {
-        $('#id_email').on("click", function() {
-            contenido_bocadillo2 = "Introduce la cuenta de Google asociada a tu dispositivo Android"
-            mostrarBocadillo()
-        })
-    });
 
     $('#btn_send2').on('click', function()
     {
@@ -50,10 +44,10 @@ $(document).ready(function() {
 });
 
 
-function mostrarBocadillo() {
+function mostrarBocadillo( id_elemento ) {
     shown ?
-        $('#id_email').hideBalloon() :
-        $('#id_email').showBalloon({
+        $(id_elemento).hideBalloon() :
+        $(id_elemento).showBalloon({
             classname: "balloon",
             contents: contenido_bocadillo2,
             position: "top",
@@ -78,9 +72,9 @@ function mostrarBocadillo() {
 function validarEmail( email ) {
     var expr = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
     if ( !expr.test(email) ) {
-        contenido_bocadillo2 = "La dirección de correo no tiene un formato válido. Por favor introduce el email que usas en tu dispositivo Android."
+        contenido_bocadillo2 = "La dirección de correo no tiene un formato válido."
         shown = false
-        mostrarBocadillo()
+        mostrarBocadillo('#id_email')
         return false;
     } else {
         return true;
@@ -88,10 +82,15 @@ function validarEmail( email ) {
 }
 
 function validarNombre( nombre ) {
-    if ( nombre.length > 128 ) {
+    if ( nombre.length == 0) {
+        contenido_bocadillo2 = "Este campo no puede estar vacío"
+        shown = false
+        mostrarBocadillo('#id_name')
+        return false;
+    } else if ( nombre.length > 128 ) {
         contenido_bocadillo2 = "El campo Nombre no debe ocupar más de 128 letras"
         shown = false
-        mostrarBocadillo()
+        mostrarBocadillo('#id_name')
         return false;
     } else {
         return true;
@@ -102,7 +101,7 @@ function validarAsunto( asunto ) {
     if ( asunto.length > 256 ) {
         contenido_bocadillo2 = "El campo Asunto no debe ocupar más de 256 letras"
         shown = false
-        mostrarBocadillo()
+        mostrarBocadillo('#id_subject')
         return false;
     } else {
         return true;
@@ -110,10 +109,15 @@ function validarAsunto( asunto ) {
 }
 
 function validarContenido( contenido ) {
-    if ( contenido.length > 1000 ) {
+    if ( contenido.length == 0) {
+        contenido_bocadillo2 = "Este campo no puede estar vacío"
+        shown = false
+        mostrarBocadillo('#id_content')
+        return false;
+    } else if ( contenido.length > 1000 ) {
         contenido_bocadillo2 = "El campo Contenido no debe ocupar más de 1000 letras"
         shown = false
-        mostrarBocadillo()
+        mostrarBocadillo('#id_content')
         return false;
     } else {
         return true;

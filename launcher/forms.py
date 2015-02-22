@@ -4,6 +4,7 @@ from django import forms
 from launcher.models import InterestedUser
 from django.core import validators
 from nocaptcha_recaptcha.fields import NoReCaptchaField
+from django.core.validators import MaxLengthValidator
 
 
 class ContactForm(forms.ModelForm):
@@ -11,27 +12,31 @@ class ContactForm(forms.ModelForm):
     def __init__(self, needs_captcha, *args, **kwargs):
         super().__init__(*args, **kwargs)
         if not needs_captcha:
-            # del self.fields['captcha']
+            del self.fields['captcha2']
             print("captcha won't be included")
         else:
             print("captcha will be included")
 
     email = forms.EmailField(max_length=128, help_text="Tu email", widget=forms.EmailInput(
-                             attrs={'class': "w-input email_field email_input", 'placeholder': 'Tu email'}),
-                             required=True)
+        attrs={'class': "w-input email_field email_input", 'placeholder': 'Tu email'}),
+        required=True, validators=[MaxLengthValidator(128)])
 
-    captcha = NoReCaptchaField(required=True, gtag_attrs={'data-theme': 'light'})
+    captcha2 = NoReCaptchaField(required=True, gtag_attrs={'data-theme': 'light'})
 
     name = forms.CharField(max_length=128, help_text="Tu nombre", required=True, widget=forms.TextInput(
-                           attrs={'class': "w-input name_field email_input", 'placeholder': 'Tu nombre'}))
+        attrs={'class': "w-input name_field email_input", 'placeholder': 'Tu nombre'}),
+        validators=[MaxLengthValidator(128)])
 
     subject = forms.CharField(max_length=256, help_text="Asunto", required=False,
                               widget=forms.TextInput(attrs={'class': "w-input asunto_field email_input",
-                                                            'placeholder': 'Asunto'}))
+                                                            'placeholder': 'Asunto'}),
+                              validators=[MaxLengthValidator(256)])
 
     content = forms.CharField(max_length=1000, help_text="Escribe tu mensaje", required=True,
                               widget=forms.Textarea(
-                                  attrs={'class': "w-input text_field", 'style': "height: 208px;", 'placeholder': 'Escribe aquí tu mensaje...'}))
+                                  attrs={'class': "w-input text_field", 'style': "height: 208px;",
+                                         'placeholder': 'Escribe aquí tu mensaje...'}),
+                              validators=[MaxLengthValidator(1000)])
 
     via = forms.CharField(required=False, widget=forms.HiddenInput(), initial="Escribenos")
 
@@ -75,7 +80,7 @@ class JoinForm(forms.ModelForm):
                                                        " dispositivo Android",
                              widget=forms.EmailInput(attrs={'class': "w-input email_input",
                                                             'placeholder': 'Tu cuenta de Google'}),
-                             required=True)
+                             required=True, validators=[MaxLengthValidator(128)])
 
     captcha = NoReCaptchaField(required=True, gtag_attrs={'data-theme': 'light'})
     name = forms.CharField(required=False, widget=forms.HiddenInput(), initial="(not specified)")
