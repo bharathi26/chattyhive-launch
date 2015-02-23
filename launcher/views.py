@@ -44,7 +44,7 @@ def about(request):
         else:
             # se procesan los errores
             errors = form.errors.as_data()
-            if 'captcha' in errors:
+            if 'captcha2' in errors:
                 context_dict['alert'] = "needs_captcha"
             print(errors)
 
