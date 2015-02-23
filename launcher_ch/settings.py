@@ -1,7 +1,7 @@
 # Django settings for launcher_ch project.
 import os
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 TEST_RUNNER = 'django.test.runner.DiscoverRunner'
