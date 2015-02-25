@@ -76,7 +76,7 @@
             </div>
             <div class="w-col w-col-6 call-to-action">
                 <h1 class="hero-header">No vas a poder dejar de chatear</h1>
-                <p class="slogan_parrafo">&Uacute;nete a nuestros hives: la mejor forma de conectar con los temas y personas que m&aacute;s te interesan.</p><a class="button" href="#subscribe-section">Acceso beta privada</a>
+                <p class="slogan_parrafo">&Uacute;nete a nuestros hives: la mejor forma de conectar con los temas y personas que m&aacute;s te interesan.</p><a class="button" href="#subscribe-section">Join chattyhive</a>
             </div>
         </div>
     </div>
@@ -95,7 +95,7 @@
             </div>
             <div class="w-col w-col-6 columna_subscribe">
                 <h2 class="head_subscribe">Prueba chattyhive beta</h2>
-                <p class="parrafo_join">&iexcl;Gracias por ser beta tester! Te avisaremos muy pronto para que pruebes la beta privada!
+                <p class="parrafo_join">&iexcl;Ya falta muy poco! Te avisaremos únicamente del lanzamiento de la app. <a href="faq" style="color:#ff8900;text-decoration:none">M&aacute;s info aqu&iacute;</a>.
                 <div class="w-form formulario" id="formulario">
                     <form class="w-clearfix formulario_subscribe" name="email-form" id="join_form" method="post" data-name="Email Form" action="/">
                         {% csrf_token %}
@@ -197,25 +197,5 @@
 
 <script type="text/javascript" src="{{STATIC_URL}}js/progress.js"></script>
 </body>
-{##}
-{#<script type="text/javascript">#}
-{#    // Buttons behaviour#}
-{#    $(document).ready(function() {#}
-{#        // Button send behaviour when clicked#}
-{#        $('#btn_send').on('click', function()#}
-{#        {#}
-{#            var email = $("#email").val();#}
-{#            var d = new Date();#}
-{#            var timestamp = d.toTimeString();#}
-{#            var csrftoken = $.cookie('csrftoken');#}
-{#            $.ajax({#}
-{#                type: "POST",#}
-{#                url: "/",#}
-{#                headers: {"X-CSRFToken":csrftoken},#}
-{#                data: {timestamp:timestamp, email:email}#}
-{#            });#}
-{#            return false;#}
-{#        });#}
-{#    });#}
-{#</script>#}
+
 </html>
