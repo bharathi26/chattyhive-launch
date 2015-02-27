@@ -9,8 +9,9 @@ from django.core.validators import MaxLengthValidator
 
 class ContactForm(forms.ModelForm):
 
-    def __init__(self, needs_captcha, *args, **kwargs):
+    def __init__(self, needs_captcha, ip_address, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.ip = ip_address
         if not needs_captcha:
             del self.fields['captcha2']
             print("captcha won't be included")
@@ -40,10 +41,14 @@ class ContactForm(forms.ModelForm):
 
     via = forms.CharField(required=False, widget=forms.HiddenInput(), initial="Escribenos")
 
+    ip_address = forms.GenericIPAddressField(required=False, widget=forms.HiddenInput(), initial="")
+
     def clean(self):
         cleaned_data = self.cleaned_data
 
         cleaned_data['via'] = "Escribenos"
+
+        cleaned_data['ip_address'] = self.ip
 
         if 'subject' not in cleaned_data.keys() or len(cleaned_data.get('subject')) == 0:
             subject = "(Sin asunto)"
@@ -62,13 +67,14 @@ class ContactForm(forms.ModelForm):
 
     class Meta:
         model = InterestedUser
-        fields = ('email', 'name', 'subject', 'via', 'content',)
+        fields = ('email', 'name', 'subject', 'via', 'content', 'ip_address')
 
 
 class JoinForm(forms.ModelForm):
 
-    def __init__(self, needs_captcha, *args, **kwargs):
+    def __init__(self, needs_captcha, ip_address, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.ip = ip_address
         if not needs_captcha:
             del self.fields['captcha']
             print("captcha won't be included")
@@ -87,6 +93,7 @@ class JoinForm(forms.ModelForm):
     subject = forms.CharField(required=False, widget=forms.HiddenInput(), initial="(no subject)")
     via = forms.CharField(required=False, widget=forms.HiddenInput(), initial="Join")
     content = forms.CharField(required=False, widget=forms.HiddenInput(), initial="no content")
+    ip_address = forms.CharField(required=False, widget=forms.HiddenInput(), initial="")
 
     # Lanzo errores si no valida bien el email y también si la dirección ya existe en la BBDD.
 
@@ -95,6 +102,7 @@ class JoinForm(forms.ModelForm):
         cleaned_data['name'] = "(not specified)"
         cleaned_data['subject'] = "(not specified)"
         cleaned_data['via'] = "Join"
+        cleaned_data['ip_address'] = self.ip
         cleaned_data['content'] = "(not specified)"
         return cleaned_data
 
@@ -123,4 +131,4 @@ class JoinForm(forms.ModelForm):
 
     class Meta:
         model = InterestedUser
-        fields = ('email', 'name', 'subject', 'via', 'content',)
+        fields = ('email', 'name', 'subject', 'via', 'content', 'ip_address')

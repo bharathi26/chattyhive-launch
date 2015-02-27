@@ -12,7 +12,7 @@ class InterestedUserResource(resources.ModelResource):
 
 class InterestedUserAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     resource_class = InterestedUserResource
-    list_display = ('email', 'name', 'subject', 'content', 'via', 'timestamp')
+    list_display = ('email', 'name', 'subject', 'content', 'via', 'timestamp', 'ip_address')
     pass
 
 admin.site.register(InterestedUser, InterestedUserAdmin)

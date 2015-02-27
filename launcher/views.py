@@ -8,6 +8,7 @@ from django.conf import settings
 
 def about(request):
     context_dict = {'alert': 'nothing'}
+    ip_address = ''
 
     #Inicializamos correctamente la necesidad de captcha
     if 'attempt_about' in request.session.keys() and request.session['attempt_about'] == 0:
@@ -17,7 +18,9 @@ def about(request):
 
     if request.method == 'POST':
         # Getting info from the POST
-        form = ContactForm(needs_captcha, request.POST)
+        ip_address = request.META['REMOTE_ADDR']
+        print(ip_address)
+        form = ContactForm(needs_captcha, ip_address, request.POST)
 
         if form.is_valid():
             print(form.cleaned_data)
@@ -48,13 +51,14 @@ def about(request):
                 context_dict['alert'] = "needs_captcha"
             print(errors)
 
-    form = ContactForm(needs_captcha)
+    form = ContactForm(needs_captcha, ip_address)
     context_dict['form'] = form
     return render(request, "about.html", context_dict)
 
 
 def home(request):
     context_dict = {'alert': 'nothing'}
+    ip_address = ''
 
     #Inicializamos correctamente la necesidad de captcha
     if 'attempt_join' in request.session.keys() and request.session['attempt_join'] == 0:
@@ -64,7 +68,9 @@ def home(request):
 
     if request.method == 'POST':
         # Getting info from the POST
-        form = JoinForm(needs_captcha, request.POST)
+        ip_address = request.META['REMOTE_ADDR']
+        print(ip_address)
+        form = JoinForm(needs_captcha, ip_address, request.POST)
 
         if form.is_valid():
             print(form.cleaned_data)
@@ -72,8 +78,8 @@ def home(request):
             form.save(commit=True)
 
             if settings.ACTIVAR_EMAILS_EN_JOIN:
-                send_mail('Nueva suscrpcion a chattyhive Beta Launch!',
-                          'Un nuevo usuario se ha suscrito a la Beta su email es: ' + form.cleaned_data['email'],
+                send_mail('Nueva suscripción a chattyhive Launch Page!',
+                          'Un nuevo usuario se ha suscrito a la Launch Page su email es: ' + form.cleaned_data['email'],
                           form.cleaned_data['email'], ['chattyhive@gmail.com'], fail_silently=False)
                 print("email enviado")
             # We only want to show captcha if it is the third time an email is registered
@@ -100,7 +106,7 @@ def home(request):
             print(errors)
 
     # se vuelve a coger el formulario vacío para presentarlo tanto en un get como en un post.
-    form = JoinForm(needs_captcha)
+    form = JoinForm(needs_captcha, ip_address)
     context_dict['form'] = form
     return render(request, "index.html", context_dict)
 
