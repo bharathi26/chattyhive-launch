@@ -1,11 +1,25 @@
 #CookielawBanner {
-    background: #111;
+    background: none repeat scroll 0 0 rgba(17, 17, 17, 0.95);
     position: fixed;
     bottom: 0%;
+    width: 100%;
+    border-top: 2px solid grey;
+    padding: 10px 20px 6px;
+    text-align: center;
 }
 
 #CookielawBanner .container {
     position: relative;
+}
+
+#CookielawBanner p{
+    color: #eeeeee;
+}
+
+#CookielawBanner a{
+    font-weight: bold;
+    color: rgb(255,182,21);
+    text-decoration: none;
 }
 
 #CookielawBanner #CookielawCross {
@@ -16,4 +30,8 @@
     right: 0;
     width: 15px;
     height: 15px;
+}
+
+.btn{
+
 }
