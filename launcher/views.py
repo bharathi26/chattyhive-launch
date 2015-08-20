@@ -4,7 +4,7 @@ from django.core.mail import send_mail
 from django.shortcuts import render
 from .forms import JoinForm, ContactForm
 from django.conf import settings
-
+from ipware.ip import get_ip
 
 def about(request):
     context_dict = {'alert': 'nothing'}
@@ -18,7 +18,7 @@ def about(request):
 
     if request.method == 'POST':
         # Getting info from the POST
-        ip_address = request.META['REMOTE_ADDR']
+        ip_address = get_ip(request)
         print(ip_address)
         form = ContactForm(needs_captcha, ip_address, request.POST)
 
@@ -68,7 +68,7 @@ def home(request):
 
     if request.method == 'POST':
         # Getting info from the POST
-        ip_address = request.META['REMOTE_ADDR']
+        ip_address = get_ip(request)
         print(ip_address)
         form = JoinForm(needs_captcha, ip_address, request.POST)
 
