@@ -20,7 +20,7 @@ DATABASES = {
         'NAME': 'chattylaunch',       # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
         'USER': 'chlaunchuser',
-        'PASSWORD': 'ch19ke9s7udcmrpalw34cx1',
+        'PASSWORD': 'xxxxxxxxxxxx',
         'HOST': 'localhost',              # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
         'PORT': '',                      # Set to empty string for default.
     }
@@ -81,7 +81,7 @@ STATICFILES_FINDERS = (
 )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = 'o=li@-mvl8%czeklb)%w*#@g01hr0m*(8(dk8s)2!tlorqz+94'
+SECRET_KEY = 'xxxxxxxxxxxxxxxxx'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -187,9 +187,9 @@ ALLOWED_HOSTS = ['*']
 ACTIVAR_EMAILS_EN_JOIN = os.environ.get('ACTIVAR_EMAILS_EN_JOIN', True)
 
 EMAIL_HOST = 'smtp.sendgrid.net'
-EMAIL_HOST_USER = 'chattyuser'
+EMAIL_HOST_USER = 'xxxxxxxx'
 
-EMAIL_HOST_PASSWORD = 'istmg1bd'
+EMAIL_HOST_PASSWORD = 'xxxxxxxxxx'
 
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
@@ -197,8 +197,8 @@ EMAIL_USE_TLS = True
 
 #nocaptcha recaptcha settings
 
-NORECAPTCHA_SITE_KEY = '6LfXrgETAAAAAIKxZJdV69Eb1mm3jZR0g6-qRVQj'
-NORECAPTCHA_SECRET_KEY = '6LfXrgETAAAAAPOedgMuWhufN_mDyDLnx25WGZAU'
+NORECAPTCHA_SITE_KEY = 'xxxxxxxxxxx'
+NORECAPTCHA_SECRET_KEY = 'xxxxxxxxxxx'
 
 NORECAPTCHA_VERIFY_URL = 'https://www.google.com/recaptcha/api/siteverify'
 NORECAPTCHA_WIDGET_TEMPLATE = 'recaptcha.html'
